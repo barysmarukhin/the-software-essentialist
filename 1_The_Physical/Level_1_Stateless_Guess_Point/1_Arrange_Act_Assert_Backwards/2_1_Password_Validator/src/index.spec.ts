@@ -39,6 +39,13 @@ describe('password validator', () => {
     expect(errors).toHaveLength(1);
     expect(errors).toContain('InvalidLength');
   });
+
+  it('knows that "hello" is between 5 and 15 characters long', () => {
+    const { result, errors } = PasswordValidator.validate('hello');
+
+    expect(result).toBe(true);
+    expect(errors).toHaveLength(0);
+  });
 })
 
 
