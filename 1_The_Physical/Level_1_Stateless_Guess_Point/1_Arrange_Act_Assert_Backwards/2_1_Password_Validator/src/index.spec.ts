@@ -21,30 +21,23 @@
 *
 * */
 
-import { PasswordValidator } from "./index";
+import { ErrorCode, PasswordValidator } from "./index";
 
 describe('password validator', () => {
-  it('knows that "hey" is not between 5 and 15 characters long', () => {
-    const { result, errors } = PasswordValidator.validate('hey');
+  describe('checking between 5 and 15 characters long', () => {
+    it.each<[string, boolean, ErrorCode[]]>([
+          ['hey1', false, ['InvalidLength']],
+          ['hello it is me and I have been wondering1', false, ['InvalidLength']],
+          ['hello1', true, []],
+        ]
+    )('knows that "%s" should return %s', (input, result, errors) => {
+      const output = PasswordValidator.validate(input);
 
-    expect(result).toBe(false);
-    expect(errors).toHaveLength(1);
-    expect(errors).toContain('InvalidLength');
-  });
+      expect(output.result).toBe(result);
+      expect(output.errors).toHaveLength(errors.length);
+      expect(output.errors).toStrictEqual(errors);
+    });
 
-  it('knows that "hello it is me and I have been wondering" is not between 5 and 15 characters long', () => {
-    const { result, errors } = PasswordValidator.validate('hello it is me and I have been wondering');
-
-    expect(result).toBe(false);
-    expect(errors).toHaveLength(1);
-    expect(errors).toContain('InvalidLength');
-  });
-
-  it('knows that "hello" is between 5 and 15 characters long', () => {
-    const { result, errors } = PasswordValidator.validate('hello');
-
-    expect(result).toBe(true);
-    expect(errors).toHaveLength(0);
   });
 })
 
