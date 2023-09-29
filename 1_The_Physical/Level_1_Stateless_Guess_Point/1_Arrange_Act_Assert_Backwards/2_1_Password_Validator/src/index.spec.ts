@@ -16,7 +16,7 @@
 * Incoming string: 'JohnDoe15'
 * {
 *   result: true,
-*   errors: ['InvalidLength', 'NoDigitsContain', 'NoUppercaseLettersContains']
+*   errors: ['InvalidLength', 'NoDigitContains', 'NoUppercaseLettersContains']
 * }
 *
 * */
@@ -27,7 +27,7 @@ describe('password validator', () => {
   describe('checking between 5 and 15 characters long', () => {
     it.each<[string, boolean, ErrorCode[]]>([
           ['hey1', false, ['InvalidLength']],
-          ['hello it is me and I have been wondering1', false, ['InvalidLength']],
+          ['1234567812345678_', false, ['InvalidLength']],
           ['hello1', true, []],
         ]
     )('knows that "%s" should return %s', (input, result, errors) => {
@@ -39,19 +39,18 @@ describe('password validator', () => {
     });
   });
 
-  it('knows that "Barys8" contains at least one digit', () => {
-    const output = PasswordValidator.validate('Barys8');
+  describe('checks for at least one digit', () => {
+    it.each<[string, boolean, ErrorCode[]]>([
+          ['Barys8', true, []],
+          ['Barys', false, ['NoDigitContains']],
+        ]
+    )('knows that "%s" should return %s', (input, result, errors) => {
+      const output = PasswordValidator.validate(input);
 
-    expect(output.result).toBe(true);
-    expect(output.errors).toHaveLength(0);
-  });
-
-  it('knows that "Barys" doesn\'t contain any digits', () => {
-    const output = PasswordValidator.validate('Barys');
-
-    expect(output.result).toBe(false);
-    expect(output.errors).toHaveLength(1);
-    expect(output.errors).toStrictEqual(['NoDigitsContain']);
+      expect(output.result).toBe(result);
+      expect(output.errors).toHaveLength(errors.length);
+      expect(output.errors).toStrictEqual(errors);
+    });
   });
 })
 
