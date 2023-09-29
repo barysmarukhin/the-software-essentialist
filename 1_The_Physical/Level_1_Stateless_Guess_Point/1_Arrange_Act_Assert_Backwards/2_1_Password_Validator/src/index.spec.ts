@@ -52,6 +52,20 @@ describe('password validator', () => {
       expect(output.errors).toStrictEqual(errors);
     });
   });
+
+  describe('checks for at least one uppercase letter', () => {
+    it.each<[string, boolean, ErrorCode[]]>([
+          ['Barys8', true, []],
+          ['barys8', false, ['NoUppercaseLettersContains']],
+        ]
+    )('knows that "%s" should return %s', (input, result, errors) => {
+      const output = PasswordValidator.validate(input);
+
+      expect(output.result).toBe(result);
+      expect(output.errors).toHaveLength(errors.length);
+      expect(output.errors).toStrictEqual(errors);
+    });
+  });
 })
 
 
