@@ -16,7 +16,7 @@
 * Incoming string: 'JohnDoe15'
 * {
 *   result: true,
-*   errors: ['InvalidLength', 'NoDigitsContains', 'NoUppercaseLettersContains']
+*   errors: ['InvalidLength', 'NoDigitsContain', 'NoUppercaseLettersContains']
 * }
 *
 * */
@@ -51,7 +51,7 @@ describe('password validator', () => {
 
     expect(output.result).toBe(false);
     expect(output.errors).toHaveLength(1);
-    expect(output.errors).toStrictEqual(['NoDigitsContains']);
+    expect(output.errors).toStrictEqual(['NoDigitsContain']);
   });
 })
 
