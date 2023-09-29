@@ -26,9 +26,9 @@ import { ErrorCode, PasswordValidator } from "./index";
 describe('password validator', () => {
   describe('checking between 5 and 15 characters long', () => {
     it.each<[string, boolean, ErrorCode[]]>([
-          ['hey1', false, ['InvalidLength']],
-          ['1234567812345678_', false, ['InvalidLength']],
-          ['hello1', true, []],
+          ['Hey1', false, ['InvalidLength']],
+          ['H234567812345678_', false, ['InvalidLength']],
+          ['helLo1', true, []],
         ]
     )('knows that "%s" should return %s', (input, result, errors) => {
       const output = PasswordValidator.validate(input);
