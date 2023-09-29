@@ -37,7 +37,13 @@ describe('password validator', () => {
       expect(output.errors).toHaveLength(errors.length);
       expect(output.errors).toStrictEqual(errors);
     });
+  });
 
+  it('knows that "Barys8" contains at least one digit', () => {
+    const output = PasswordValidator.validate('Barys8');
+
+    expect(output.result).toBe(true);
+    expect(output.errors).toHaveLength(0);
   });
 })
 
