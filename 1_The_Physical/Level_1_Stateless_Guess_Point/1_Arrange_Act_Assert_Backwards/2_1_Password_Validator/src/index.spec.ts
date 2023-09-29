@@ -45,6 +45,14 @@ describe('password validator', () => {
     expect(output.result).toBe(true);
     expect(output.errors).toHaveLength(0);
   });
+
+  it('knows that "Barys" doesn\'t contain any digits', () => {
+    const output = PasswordValidator.validate('Barys');
+
+    expect(output.result).toBe(false);
+    expect(output.errors).toHaveLength(1);
+    expect(output.errors).toStrictEqual(['NoDigitsContains']);
+  });
 })
 
 
