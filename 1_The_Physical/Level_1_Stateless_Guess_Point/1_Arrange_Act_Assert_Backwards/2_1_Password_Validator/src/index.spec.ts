@@ -66,6 +66,25 @@ describe('password validator', () => {
       expect(output.errors).toStrictEqual(errors);
     });
   });
+
+  describe('can detect multiple errors', () => {
+    it.each<[string, boolean, ErrorCode[]]>([
+          ['hey', false, ['NoDigitContains', 'NoUppercaseLettersContains', 'InvalidLength']],
+          ['hey', false, ['NoUppercaseLettersContains', 'InvalidLength', 'NoDigitContains']],
+          ['hey8', false, ['NoUppercaseLettersContains', 'InvalidLength']],
+          ['Hey8', false, ['InvalidLength']],
+        ]
+    )('knows that "%s" should return %s', (input, result, errors) => {
+      const output = PasswordValidator.validate(input);
+
+      expect(output.result).toBe(result);
+      expect(output.errors).toHaveLength(errors.length);
+
+      output.errors.forEach((productionCodeError) => {
+          expect(errors).toContain(productionCodeError);
+      })
+    });
+  });
 })
 
 
