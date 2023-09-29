@@ -1,4 +1,4 @@
-export type ErrorCode = 'InvalidLength' | 'NoDigitsContain' | 'NoUppercaseLettersContains';
+export type ErrorCode = 'InvalidLength' | 'NoDigitContains' | 'NoUppercaseLettersContains';
 
 export class PasswordValidator {
     public static validate(input: string): { result: boolean; errors: ErrorCode[]} {
@@ -7,7 +7,7 @@ export class PasswordValidator {
         const containsDigit = input.split('').some(character => !isNaN(Number(character)))
 
         if(!isLengthValid) errors.push('InvalidLength')
-        if(!containsDigit) errors.push('NoDigitsContain')
+        if(!containsDigit) errors.push('NoDigitContains')
 
         return {
             result: errors.length === 0,
