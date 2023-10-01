@@ -39,4 +39,12 @@ describe('stats calculator', () => {
     `('returns avg value', ({ input, avg }) => {
         expect(getStatistics(input).avg).toBe(avg);
     })
+
+    it.each`
+        input                           | count
+        ${[2, 4, 21, -8, 53, 40]}       | ${6}
+        ${[0]}                          | ${1}
+    `('returns avg value', ({ input, count }) => {
+        expect(getStatistics(input).count).toBe(count);
+    })
 })
