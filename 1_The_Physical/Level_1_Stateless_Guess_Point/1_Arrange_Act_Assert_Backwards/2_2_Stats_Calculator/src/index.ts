@@ -8,11 +8,10 @@ const getAvgValue = (input: number[], decimalPlaces = 12) => {
 
     return parseFloat(average.toFixed(decimalPlaces));
 };
-export const getStatistics = (input: number[]): StatisticsOutput => {
-    return {
+export const getStatistics = (input: number[]): StatisticsOutput => ({
         min: getMinValue(input),
         max: getMaxValue(input),
         avg: getAvgValue(input),
-        count: NaN,
+        count: input.length,
     }
-}
+)
