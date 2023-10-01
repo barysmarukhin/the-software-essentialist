@@ -35,7 +35,7 @@ describe('stats calculator', () => {
     it.each`
         input                           | avg
         ${[2, 4, 21, -8, 53, 40]}       | ${18.666666666667}
-        ${[0, 4, -100, -8, 533, 40]}    | ${533}
+        ${[0, 4, -100, -8, 533, 40]}    | ${78.166666666667}
     `('returns avg value', ({ input, avg }) => {
         expect(getStatistics(input).avg).toBe(avg);
     })
