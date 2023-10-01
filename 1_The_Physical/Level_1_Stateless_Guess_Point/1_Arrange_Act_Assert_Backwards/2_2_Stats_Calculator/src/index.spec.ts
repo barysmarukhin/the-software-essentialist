@@ -20,7 +20,7 @@ describe('stats calculator', () => {
         input                           | min
         ${[2, 4, 21, -8, 53, 40]}       | ${-8}
         ${[0, 4, -100, -8, 533, 40]}    | ${-100}
-    `('returns min value', ({ input, min }) => {
+    `('returns min value for "$input"', ({ input, min }) => {
         expect(getStatistics(input).min).toBe(min);
     });
 
@@ -28,7 +28,7 @@ describe('stats calculator', () => {
         input                           | max
         ${[2, 4, 21, -8, 53, 40]}       | ${53}
         ${[0, 4, -100, -8, 533, 40]}    | ${533}
-    `('returns max value', ({ input, max }) => {
+    `('returns max value for "$input"', ({ input, max }) => {
         expect(getStatistics(input).max).toBe(max);
     })
 
@@ -36,7 +36,7 @@ describe('stats calculator', () => {
         input                           | avg
         ${[2, 4, 21, -8, 53, 40]}       | ${18.666666666667}
         ${[0, 4, -100, -8, 533, 40]}    | ${78.166666666667}
-    `('returns avg value', ({ input, avg }) => {
+    `('returns avg value for "$input"', ({ input, avg }) => {
         expect(getStatistics(input).avg).toBe(avg);
     })
 
@@ -44,7 +44,21 @@ describe('stats calculator', () => {
         input                           | count
         ${[2, 4, 21, -8, 53, 40]}       | ${6}
         ${[0]}                          | ${1}
-    `('returns avg value', ({ input, count }) => {
+    `('returns count value for "$input"', ({ input, count }) => {
         expect(getStatistics(input).count).toBe(count);
     })
+
+    it.each`
+        input                           | min       | max       | count | avg
+        ${[2, 4, 21, -8, 53, 40]}       | ${-8}     | ${53}     | ${6}  | ${18.666666666667}
+        ${[0, 4, -100, -8, 533, 40]}    | ${-100}   | ${533}    | ${6}  | ${78.166666666667}
+    `('returns min, max, avg and count values for "$input"', ({ input, avg, min, max, count }) => {
+        expect(getStatistics(input)).toEqual({
+            min,
+            max,
+            avg,
+            count,
+        });
+    })
+
 })
