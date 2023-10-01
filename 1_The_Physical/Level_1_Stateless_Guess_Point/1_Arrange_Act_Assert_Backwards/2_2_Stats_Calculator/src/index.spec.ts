@@ -22,5 +22,13 @@ describe('stats calculator', () => {
         ${[0, 4, -100, -8, 533, 40]}    | ${-100}
     `('returns min value', ({ input, min }) => {
         expect(getStatistics(input).min).toBe(min);
+    });
+
+    it.each`
+        input                           | max
+        ${[2, 4, 21, -8, 53, 40]}       | ${53}
+        ${[0, 4, -100, -8, 533, 40]}    | ${533}
+    `('returns max value', ({ input, max }) => {
+        expect(getStatistics(input).max).toBe(max);
     })
 })
