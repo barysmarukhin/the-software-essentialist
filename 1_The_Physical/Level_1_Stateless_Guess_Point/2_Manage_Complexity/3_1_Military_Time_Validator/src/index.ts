@@ -1,1 +1,1 @@
-export const isTimeRangeValid = (timeRange: string) => undefined
+export const isTimeRangeValid = (timeRange: string) => true
