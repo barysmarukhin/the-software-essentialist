@@ -17,5 +17,18 @@ export const isTimeRangeValid = (timeRange: string) => {
     const [start, end] = timeList;
     if (!isTimeValid(start) || !isTimeValid(end)) return false;
 
+    // Validate time interval
+    if (!isTimeGreaterOrEqual(end, start)) return false;
+
     return true;
+}
+
+function isTimeGreaterOrEqual(startTime: string, endTime: string) {
+    const [startHours, startMinutes] = startTime.split(':').map(Number);
+    const [endHours, endMinutes] = endTime.split(':').map(Number);
+
+    if (startHours > endHours) return true;
+    if (startHours === endHours) return startMinutes >= endMinutes;
+
+    return false;
 }
