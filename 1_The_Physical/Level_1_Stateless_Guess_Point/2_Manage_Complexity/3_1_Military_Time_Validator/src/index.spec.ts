@@ -9,9 +9,9 @@ describe('military time validator', () => {
         ['03:00 - 14:10', true],
         ['00:00 - 24:00', false], // Invalid end time
         ['25:22 - 12:00', false], // Invalid start time
-        // ['01:30', false], // Missing end time
-        // ['12:00-12:34-12:59', false], // Too many times
-        // ['00:05-23:59', false], // Missing spaces around the hyphen
+        ['01:30', false], // Missing end time
+        ['12:00-12:34-12:59', false], // Too many times
+        ['00:05-23:59', false], // Missing spaces around the hyphen
     ])(`isTimeRangeValid: %s should be %p`, (timeRange, expected) => {
         expect(isTimeRangeValid(timeRange)).toBe(expected);
     });
