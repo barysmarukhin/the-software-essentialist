@@ -12,6 +12,7 @@ describe('military time validator', () => {
         ['25:22 - 12:00', false], // Invalid start time
         ['01:30', false], // Missing end time
         ['12:00-12:34-12:59', false], // Too many times
+        ['12:40 - 11:00', false], // Invalid time interval
     ])(`isTimeRangeValid: %s should be %p`, (timeRange, expected) => {
         expect(isTimeRangeValid(timeRange)).toBe(expected);
     });
