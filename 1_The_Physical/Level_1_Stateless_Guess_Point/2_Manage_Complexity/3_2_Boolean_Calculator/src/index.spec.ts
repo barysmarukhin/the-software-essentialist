@@ -36,10 +36,12 @@ import { BooleanCalculator } from './index'
 // "(TRUE OR TRUE OR TRUE) AND FALSE" -> false
 // "NOT (TRUE AND TRUE)" -> false
 describe('boolean calculator', () => {
-    it.each(
-        [['TRUE', true],
-            ['FALSE', false]]
-    )('single operator "%s" should result into %s', (operator: 'TRUE' | 'FALSE', result) => {
+    it.each([
+        ['TRUE', true],
+        ['FALSE', false],
+        ['NOT TRUE', false],
+        ['NOT FALSE', true]
+    ])('operator "%s" should result into %s', (operator, result) => {
         expect(BooleanCalculator.evaluateExpression(operator)).toBe(result);
     })
 })
