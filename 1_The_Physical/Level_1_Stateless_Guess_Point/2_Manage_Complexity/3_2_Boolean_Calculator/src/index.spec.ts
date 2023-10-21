@@ -39,7 +39,7 @@ describe('boolean calculator', () => {
     it.each(
         [['TRUE', true],
             ['FALSE', false]]
-    )('single operator "%s" should result into %s', (operator, result) => {
+    )('single operator "%s" should result into %s', (operator: 'TRUE' | 'FALSE', result) => {
         expect(BooleanCalculator.evaluateExpression(operator)).toBe(result);
     })
 })
