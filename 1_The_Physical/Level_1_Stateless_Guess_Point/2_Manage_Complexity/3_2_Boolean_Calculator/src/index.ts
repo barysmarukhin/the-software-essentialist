@@ -3,6 +3,8 @@ export class BooleanCalculator {
         const resultMap: Record<string, boolean> = {
             TRUE: true,
             FALSE: false,
+            'NOT FALSE': true,
+            'NOT TRUE': false,
         }
 
         return resultMap[expression];
