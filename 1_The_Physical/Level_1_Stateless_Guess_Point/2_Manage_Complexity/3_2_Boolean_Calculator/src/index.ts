@@ -12,6 +12,11 @@ export class BooleanCalculator {
         }
 
         const expressionTokens = expression.split(/(\(|\)|\s+)/).filter((token) => token.trim() !== '');
+
+        if (!expressionTokens.every((token) => resultMap[token])) {
+            throw new Error('Invalid expression');
+        }
+
         const javascriptBooleanExpressionAsString = expressionTokens.reduce((acc, part) => {
             acc += resultMap[part];
             return acc;

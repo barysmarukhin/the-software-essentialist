@@ -51,7 +51,12 @@ describe('boolean calculator', () => {
         ['(TRUE OR FALSE OR TRUE) AND (FALSE OR TRUE OR TRUE)', true],
         ['(TRUE AND FALSE OR TRUE) AND   TRUE', true],
         ['NOT (TRUE AND TRUE)', false],
-    ])('operator "%s" should result into %s', (operator, result) => {
-        expect(BooleanCalculator.evaluateExpression(operator)).toBe(result);
+    ])('operator "%s" should result into %s', (expression, result) => {
+        expect(BooleanCalculator.evaluateExpression(expression)).toBe(result);
+    })
+
+    it('should throw "Invalid expression" error', () => {
+        const expression = 'TRUE && ABRAKADABRA';
+        expect(() => BooleanCalculator.evaluateExpression(expression)).toThrowError('Invalid expression')
     })
 })
