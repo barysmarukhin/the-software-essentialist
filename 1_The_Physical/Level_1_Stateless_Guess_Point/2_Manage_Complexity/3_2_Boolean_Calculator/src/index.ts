@@ -7,6 +7,8 @@ export class BooleanCalculator {
             NOT: '!',
             AND: '&&',
             OR: '||',
+            '(': '(',
+            ')': ')',
         }
 
         const expressionTokens = expression.split(' ');
