@@ -6,6 +6,7 @@ export class BooleanCalculator {
             FALSE: 'false',
             NOT: '!',
             AND: '&&',
+            OR: '||',
         }
 
         const expressionTokens = expression.split(' ');

@@ -43,6 +43,8 @@ describe('boolean calculator', () => {
         ['NOT FALSE', true],
         ['TRUE AND FALSE', false],
         ['TRUE AND TRUE', true],
+        ['TRUE OR FALSE', true],
+        ['FALSE OR FALSE', false],
     ])('operator "%s" should result into %s', (operator, result) => {
         expect(BooleanCalculator.evaluateExpression(operator)).toBe(result);
     })
